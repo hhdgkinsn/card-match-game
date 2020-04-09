@@ -1,0 +1,159 @@
+@import "partials/base";
+@import "partials/media";
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-image: url(../assets/images/wood-bg.jpg);
+}
+
+.overlay-text {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: none!important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    font-family: 'Quicksand', sans-serif;
+    color: $Colombia-Blue;
+    font-weight: bold;
+
+
+    &.visible {
+        display: flex!important;
+        animation: overlay-grow 500ms forwards;
+        background-color: rgba($color: $Steel-Blue, $alpha: 0.85);
+
+        .overlay-small {
+            font-size: .4em;
+            padding-top: 10px;
+        }
+
+        @keyframes overlay-grow {
+            from {font-size: 0em;}
+            to {font-size: 3.5em;}
+        }
+    }
+
+    
+}
+
+.title-wrapper {
+    padding-top: 50px;
+
+    .page-title {
+        width: 270px;
+        margin: 0 auto;
+        font-family: Hanged, serif;
+        font-size: 6em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        span {
+            margin: 12px 0px;
+            padding: 0;
+        }
+    } 
+}
+
+.game-data {
+    padding-top: 25px;
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $Steel-Blue;
+    font-size: 25px;
+
+    i {padding: 0px 8px;}
+    
+    #time {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+}
+
+.game-container {
+    width: 50%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 10px;
+    justify-content: center;
+    padding: 40px 150px;
+    perspective: 500px;
+
+    .card {
+        height: 150px;
+        width: 100px;
+        cursor: pointer;
+        position: relative;
+
+        &:hover {
+            cursor: url(../assets/cursors/Link.cur), auto;
+        }
+
+        &.visible .card-back{
+            transform: rotateY(-180deg);
+        }
+
+        &.visible .card-front{
+            transform: rotateY(0deg);
+        }
+
+        .card-face {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            background-color: $Blue-Sapphire;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform ease-in-out 500ms;
+        }
+
+        .card-back {
+            border: solid $Sea-Blue 5px;
+
+            &:hover {
+                img {
+                    transform: scale(1.1);
+                }
+            }
+            
+            img {
+                height: 85px;
+                transform: scale(1);
+                transition: transform ease-in-out 50ms
+            }
+        }
+
+        .card-front {
+            transform: rotateY(180deg);
+            background-color: $Colombia-Blue;
+
+            img {
+                height: 80px;
+            }
+        }
+    }
+}
+
+#attribution {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 20px;
+    margin-bottom: 5px;
+}

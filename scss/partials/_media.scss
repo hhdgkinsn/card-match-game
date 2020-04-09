@@ -1,0 +1,13 @@
+@media screen and (max-width: 950px) {
+    html {height: auto;}
+    body {overflow-y: auto!important;}
+    #attribution {display: none;}
+    .game-container {
+        grid-template-columns: repeat(4, 1fr)!important;
+    }
+}
+@media screen and (max-width: 500px) {
+    .game-container {
+        grid-template-columns: repeat(2, 1fr)!important;
+    }
+}

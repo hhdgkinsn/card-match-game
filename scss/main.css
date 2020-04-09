@@ -1,0 +1,260 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+@font-face {
+  font-family: "Hanged";
+  src: url(../assets/fonts/Hanged_Letters.ttf);
+}
+
+*,
+*::after,
+*::before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: url(../../assets/cursors/Arrow.cur), auto;
+}
+
+@media screen and (max-width: 950px) {
+  html {
+    height: auto;
+  }
+  body {
+    overflow-y: auto !important;
+  }
+  #attribution {
+    display: none;
+  }
+  .game-container {
+    -ms-grid-columns: (1fr)[4] !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .game-container {
+    -ms-grid-columns: (1fr)[2] !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-image: url(../assets/images/wood-bg.jpg);
+}
+
+.overlay-text {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: none !important;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 1;
+  font-family: 'Quicksand', sans-serif;
+  color: #CCDEE0;
+  font-weight: bold;
+}
+
+.overlay-text.visible {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-animation: overlay-grow 500ms forwards;
+          animation: overlay-grow 500ms forwards;
+  background-color: rgba(38, 132, 173, 0.85);
+}
+
+.overlay-text.visible .overlay-small {
+  font-size: .4em;
+  padding-top: 10px;
+}
+
+@-webkit-keyframes overlay-grow {
+  from {
+    font-size: 0em;
+  }
+  to {
+    font-size: 3.5em;
+  }
+}
+
+@keyframes overlay-grow {
+  from {
+    font-size: 0em;
+  }
+  to {
+    font-size: 3.5em;
+  }
+}
+
+.title-wrapper {
+  padding-top: 50px;
+}
+
+.title-wrapper .page-title {
+  width: 270px;
+  margin: 0 auto;
+  font-family: Hanged, serif;
+  font-size: 6em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.title-wrapper .page-title span {
+  margin: 12px 0px;
+  padding: 0;
+}
+
+.game-data {
+  padding-top: 25px;
+  width: 30%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #2684AD;
+  font-size: 25px;
+}
+
+.game-data i {
+  padding: 0px 8px;
+}
+
+.game-data #time {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.game-container {
+  width: 50%;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[8];
+      grid-template-columns: repeat(8, 1fr);
+  grid-gap: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 40px 150px;
+  -webkit-perspective: 500px;
+          perspective: 500px;
+}
+
+.game-container .card {
+  height: 150px;
+  width: 100px;
+  cursor: pointer;
+  position: relative;
+}
+
+.game-container .card:hover {
+  cursor: url(../assets/cursors/Link.cur), auto;
+}
+
+.game-container .card.visible .card-back {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+}
+
+.game-container .card.visible .card-front {
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+}
+
+.game-container .card .card-face {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  background-color: #1F5282;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: -webkit-transform ease-in-out 500ms;
+  transition: -webkit-transform ease-in-out 500ms;
+  transition: transform ease-in-out 500ms;
+  transition: transform ease-in-out 500ms, -webkit-transform ease-in-out 500ms;
+}
+
+.game-container .card .card-back {
+  border: solid #006494 5px;
+}
+
+.game-container .card .card-back:hover img {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.game-container .card .card-back img {
+  height: 85px;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: -webkit-transform ease-in-out 50ms;
+  transition: -webkit-transform ease-in-out 50ms;
+  transition: transform ease-in-out 50ms;
+  transition: transform ease-in-out 50ms, -webkit-transform ease-in-out 50ms;
+}
+
+.game-container .card .card-front {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  background-color: #CCDEE0;
+}
+
+.game-container .card .card-front img {
+  height: 80px;
+}
+
+#attribution {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 20px;
+  margin-bottom: 5px;
+}
+/*# sourceMappingURL=main.css.map */
